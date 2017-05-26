@@ -1,0 +1,304 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>创建动态按钮</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- ko foreach: contacts -->
+    <div id="id1" data-bind="with: addedContact1">
+    </div>
+    <div id="id2">
+    </div>
+    <div id="id3">
+    </div>
+    <div id="id4">
+    </div>
+    <!-- /ko -->
+    <div id="mydiv" style="background-image: url('../../Images/more.jpg');width:232px;height:93px;float:left">
+        <input id="myModalLabel" type="image" src="~/Images/more.png" data-toggle="modal" data-target="#myModal" style="float:left;margin-left:98px;margin-top:15.5px;" />
+        <label style="float:left;margin-top:55px;color:white;margin-left:-31px;">更多</label>
+    </div>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">添加</h4>
+                </div>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" name="test" value="index"/></td>
+                        <td>首页</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="test" value="us"/></td>
+                        <td>关于我们</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="test" value="new"/></td>
+                        <td>新闻中心</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="test" value="resources"/></td>
+                        <td>资源中心</td>
+                    </tr>
+                </table>
+                <div class="modal-footer">
+                    <button type="button" onclick="show()" class="btn btn-primary">
+                        添加
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+    var viewModel = {
+        indexs: ko.observable("0"),
+        uss: ko.observable("0"),
+        newss: ko.observable("0"),
+        resourcess: ko.observable("0"),
+    }
+    var Type = "";
+    //function chooseOne(test) {
+    //    //先取得同name的chekcBox的集合物件
+    //    var obj = document.getElementsByName("test");
+    //    for (i = 0; i < obj.length; i++) {
+    //        //判斷obj集合中的i元素是否為cb，若否則表示未被點選
+    //        if (obj[i] != test) obj[i].checked = false;
+    //            //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行
+    //        else obj[i].checked = true;
+    //    }
+    //}
+    function Update(data)
+    {
+        var a = 4;
+        if (data.Index1 == true)
+        {
+            var id1 = document.getElementById("id1");
+            var div = document.createElement("div");
+            div.style = "background-image: url('../../Images/ddsl2.jpg');width:232px;height:93px;float:left";
+            div.id = "index";
+            id1.appendChild(div)
+            var index = document.getElementById("index");
+            var input = document.createElement("input");
+            input.type = "image";
+            input.src = "/Images/icon.png";
+            input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+            index.appendChild(input)
+            var label = document.createElement("a");
+            label.textContent = "首页";
+            label.style = "float:left;margin-top:55px;color:white;margin-left:-29px;";
+            label.href = "@Url.Action("Index1", "Home")";
+            index.appendChild(label)
+            a--;
+            $('#myModal').modal('hide');
+            this.addedContact = ko.observable();
+            this.addContact1 = function (data) {
+            };
+        }
+        if (data.news == true) {
+            var id1 = document.getElementById("id3");
+            var div = document.createElement("div");
+            div.style = "background-image: url('../../Images/ddsl1.jpg');width:232px;height:93px;float:left";
+            div.id = "new";
+            id1.appendChild(div)
+            var index = document.getElementById("new");
+            var input = document.createElement("input");
+            input.type = "image";
+            input.src = "/Images/icon.png";
+            input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+            index.appendChild(input)
+            var label = document.createElement("a");
+            label.textContent = "新闻中心";
+            label.style = "float:left;margin-top:55px;color:white;margin-left:-40px;";
+            label.href = "@Url.Action("news", "Home")";
+            index.appendChild(label)
+            a--;
+            $('#myModal').modal('hide');
+        }
+        if (data.us == true) {
+            var id1 = document.getElementById("id2");
+            var div = document.createElement("div");
+            div.style = "background-image: url('../../Images/ddsl.jpg');width:232px;height:93px;float:left";
+            div.id = "us";
+            id1.appendChild(div)
+            var index = document.getElementById("us");
+            var input = document.createElement("input");
+            input.type = "image";
+            input.src = "/Images/icon.png";
+            input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+            index.appendChild(input)
+            var label = document.createElement("a");
+            label.textContent = "关于我们";
+            label.style = "float:left;margin-top:55px;color:white;margin-left:-40px;";
+            label.href = "@Url.Action("us", "Home")";
+            index.appendChild(label)
+            a--;
+            $('#myModal').modal('hide');
+        }
+
+        if (data.resources == true) {
+            var id1 = document.getElementById("id4");
+            var div = document.createElement("div");
+            div.style = "background-image: url('../../Images/ddsl3.jpg');width:232px;height:93px;float:left";
+            div.id = "resources";
+            id1.appendChild(div)
+            var index = document.getElementById("resources");
+            var input = document.createElement("input");
+            input.type = "image";
+            input.src = "/Images/icon.png";
+            input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+            index.appendChild(input)
+            var label = document.createElement("a");
+            label.textContent = "资源中心";
+            label.style = "float:left;margin-top:55px;color:white;margin-left:-40px;";
+            label.href = "@Url.Action("resources", "Home")";
+            index.appendChild(label)
+            a--;
+            $('#myModal').modal('hide');
+        }
+        if (a == 4)
+        {
+        }
+        $('#myModal').modal('hide');
+    }
+    function show() {
+        obj = document.getElementsByName("test");
+        var a = "10"
+        var b = "10"
+        var c = "10"
+        var d = "10"
+        check_val = [];
+        for (k in obj) {
+            if (obj[k].checked)
+                check_val.push(obj[k].value);
+        }
+        for (var i = 0 ; i < check_val.length; i++) {
+            var temp = check_val[i];
+
+            if (temp == "index") {
+                a="1"
+            }
+            if (temp == "us") {
+                b="2"
+            }
+            if (temp == "new") {
+                c="3"
+            }
+            if (temp == "resources") {
+                d="4"
+            }
+        }
+        $.ajax({
+            url: "/api/Contents",
+            type: "Get",
+            data:{index:a, us:b, newss:c, resources:d },
+            success: function (data) {
+                Update(data);
+            }
+        })
+    }
+    $.ajax({
+        url: "/api/Contents",
+        type: "Get",
+        success: function (data) {
+            if (data.list[0].Index1 == true) {
+                var id1 = document.getElementById("id1");
+                var div = document.createElement("div");
+                div.style = "background-image: url('../../Images/ddsl2.jpg');width:232px;height:93px;float:left";
+                div.id = "index";
+                id1.appendChild(div)
+                var index = document.getElementById("index");
+                var input = document.createElement("input");
+                input.type = "image";
+                input.src = "/Images/icon.png";
+                input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+                index.appendChild(input)
+                var label = document.createElement("a");
+                label.textContent = "首页";
+                label.style = "float:left;margin-top:55px;color:white;margin-left:-29px;";
+                label.href = "@Url.Action("Index1", "Home")";
+                index.appendChild(label)
+                $('#myModal').modal('hide');
+          
+            }
+            if (data.list[0].news == true) {
+                var id1 = document.getElementById("id3");
+                var div = document.createElement("div");
+                div.style = "background-image: url('../../Images/ddsl1.jpg');width:232px;height:93px;float:left";
+                div.id = "new";
+                id1.appendChild(div)
+                var index = document.getElementById("new");
+                var input = document.createElement("input");
+                input.type = "image";
+                input.src = "/Images/icon.png";
+                input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+                index.appendChild(input)
+                var label = document.createElement("a");
+                label.textContent = "新闻中心";
+                label.style = "float:left;margin-top:55px;color:white;margin-left:-40px;";
+                label.href = "@Url.Action("news", "Home")";
+                index.appendChild(label)
+                $('#myModal').modal('hide');
+            }
+            if (data.list[0].us == true) {
+                var id1 = document.getElementById("id2");
+                var div = document.createElement("div");
+                div.style = "background-image: url('../../Images/ddsl.jpg');width:232px;height:93px;float:left";
+                div.id = "us";
+                id1.appendChild(div)
+                var index = document.getElementById("us");
+                var input = document.createElement("input");
+                input.type = "image";
+                input.src = "/Images/icon.png";
+                input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+                index.appendChild(input)
+                var label = document.createElement("a");
+                label.textContent = "关于我们";
+                label.style = "float:left;margin-top:55px;color:white;margin-left:-40px;";
+                label.href = "@Url.Action("us", "Home")";
+                index.appendChild(label)
+                $('#myModal').modal('hide');
+            }
+            if (data.list[0].resources == true) {
+                var id1 = document.getElementById("id4");
+                var div = document.createElement("div");
+                div.style = "background-image: url('../../Images/ddsl3.jpg');width:232px;height:93px;float:left";
+                div.id = "resources";
+                id1.appendChild(div)
+                var index = document.getElementById("resources");
+                var input = document.createElement("input");
+                input.type = "image";
+                input.src = "/Images/icon.png";
+                input.style = "float:left;margin-left:98px;margin-top:15.5px;";
+                index.appendChild(input)
+                var label = document.createElement("a");
+                label.textContent = "资源中心";
+                label.style = "float:left;margin-top:55px;color:white;margin-left:-40px;";
+                label.href = "@Url.Action("resources", "Home")";
+                index.appendChild(label)
+                $('#myModal').modal('hide');
+            }
+        },
+        error: function () {
+            alert("错误");
+        }
+    });
+</script>
